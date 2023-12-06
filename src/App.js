@@ -6,9 +6,9 @@ function BookLibrary() {
   const [books, setBooks] = useState([]);
   const [currentTitle, setCurrentTitle] = useState('');
   const [currentAuthor, setCurrentAuthor] = useState('');
-  // const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isChecked, setIsChecked] = useState(false)
-  const checkHandler = () => {
+  const checkHandler = (id) => {
     setIsChecked(!isChecked) 
   }
   
@@ -25,17 +25,17 @@ function BookLibrary() {
     }
   };
 
-  // const updateBook = (index) => {
-  //   if (currentTitle.trim() && currentAuthor.trim() !== '') {
-  //     alert("Please add a new book")
-  //     const updatedBooks = [...books];
-  //     updatedBooks[index] = { title: currentTitle, author: currentAuthor };
-  //     setBooks(updatedBooks);
-  //     setCurrentTitle('');
-  //     setCurrentAuthor('');
-  //     // setSelectedIndex(-1);
-  //   }
-  // };
+  const updateBook = (index) => {
+    if (currentTitle.trim() && currentAuthor.trim() !== '') {
+   
+      const updatedBooks = [...books];
+      updatedBooks[index] = { title: currentTitle, author: currentAuthor };
+      setBooks(updatedBooks);
+      setCurrentTitle('');
+      setCurrentAuthor('');
+      setSelectedIndex(-1);
+    }
+  };
   
   
   const deleteBook = (index) => {
@@ -65,14 +65,14 @@ function BookLibrary() {
             placeholder="Enter book author..."
           />
           <br /><br/>
-          <button className="submit" onClick={addBook}>
+        
+          {selectedIndex === -1 ? (
+              <button className="submit" onClick={addBook}>
               Add Book
             </button>
-          {/* {selectedIndex === -1 ? (
-            
           ) : (
             <button onClick={() => updateBook(selectedIndex)}>Update Book</button>
-          )} */}
+          )}
         </div>
         <h2>My Book Library</h2>
         <div className="book-list">
@@ -81,14 +81,14 @@ function BookLibrary() {
           <ul>
             {books.map((book, index) => (
               <li key={index}>
-                <input type="checkbox" id="checkbox" checked={isChecked} style={{color: isChecked ? 'green':'red'}} onChange={checkHandler} />
+                <input type="checkbox" id="checkbox" key={index} checked={isChecked} style={{color: isChecked ? 'green':'red'}} onChange={checkHandler} />
       <label htmlFor="checkbox"> </label>
       
    
-     <p style={{color: isChecked ? 'green':'red'}}></p>
+     <p style={{color: isChecked ? 'green':'red'}}  key={index} >
 
-                <strong>{book.title}</strong> by {book.author}
-                {/* <button onClick={() => setSelectedIndex(index)}>Edit</button> */}
+                <strong>{book.title}</strong> by {book.author}</p>
+                <button onClick={() => setSelectedIndex(index)}>Edit</button>
                 <button onClick={() => deleteBook(index)}>Delete</button>
                
               </li>

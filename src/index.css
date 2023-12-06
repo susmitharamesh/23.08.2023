@@ -19,14 +19,19 @@ li{
 input
 {
   background-color: rgba(172, 255, 47, 0.619);
-  /* outline: 2px solid red; */
-  box-shadow: 2px red;
+  padding: 10px;
+  border-radius: 10px;
+  border:none;
+  
 
 }
 button
 {
   background-color: blueviolet;
   color:#fff;
+  border-radius: 40px;
+  padding: 10px;
+  border:none;
 }
 label{
   font-weight: bold;
@@ -35,7 +40,7 @@ label{
 }
 .App
 {
-  background-color: rgba(159, 147, 147, 0.073);
+  background-color: rgba(181, 167, 167, 0.073);
   display: grid;
   align-items: center;
   justify-content: center;
@@ -43,7 +48,11 @@ label{
  left: 30%;
   transform: translate(-50,-50);
 }
-.checkbox
+#checkbox
 {
-  padding: 10px;
+  padding: 100%;
+  accent-color: blue;
+}
+strong{
+  text-transform: capitalize;
 }
